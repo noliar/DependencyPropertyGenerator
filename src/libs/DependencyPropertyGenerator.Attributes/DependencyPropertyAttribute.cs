@@ -19,8 +19,16 @@ internal sealed class DependencyPropertyAttribute : global::System.Attribute
 
     /// <summary>
     /// Type of this dependency property.
+    /// If you need to pass a `Generic Type` expression, use <see cref="TypeExpression"/>. <br/>
     /// </summary>
-    public global::System.Type Type { get; }
+    public global::System.Type? Type { get; }
+
+    /// <summary>
+    /// Type expression of this dependency property.
+    /// Used to pass a `Generic Type` expression to an initializer.
+    /// Default - <see langword="null"/>.
+    /// </summary>
+    public string? TypeExpression { get; }
 
     /// <summary>
     /// Default value of this dependency property. <br/>
@@ -239,6 +247,20 @@ internal sealed class DependencyPropertyAttribute : global::System.Attribute
     {
         Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
         Type = type ?? throw new global::System.ArgumentNullException(nameof(type));
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="typeExpression"></param>
+    /// <exception cref="global::System.ArgumentNullException"></exception>
+    public DependencyPropertyAttribute(
+        string name,
+        string typeExpression)
+    {
+        Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
+        TypeExpression = typeExpression ?? throw new global::System.ArgumentNullException(nameof(typeExpression));
     }
 }
 

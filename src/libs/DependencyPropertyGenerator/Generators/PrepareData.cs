@@ -22,13 +22,28 @@ public static class PrepareData
         var name =
             attribute.ConstructorArguments.ElementAtOrDefault(0).Value?.ToString() ??
             string.Empty;
-        var typeSymbol =
+        var type = string.Empty;
+        var shortType = string.Empty;
+        var isValueType = false;
+        var isSpecialType = false;
+        var typeExpression = attribute.ConstructorArguments.ElementAtOrDefault(1).Value as string;
+        if (!string.IsNullOrEmpty(typeExpression))
+        {
+            type = typeExpression;
+            shortType = typeExpression;
+            isValueType = false;
+            isSpecialType = true;
+        }
+        else
+        {
+            var typeSymbol =
             attribute.GetGenericTypeArgument(0) ??
             attribute.ConstructorArguments.ElementAtOrDefault(1).Value as ITypeSymbol;
-        var type = typeSymbol?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) ?? string.Empty;
-        var shortType = typeSymbol?.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat) ?? string.Empty;
-        var isValueType = typeSymbol?.IsValueType ?? true;
-        var isSpecialType = typeSymbol.IsSpecialType() ?? false;
+            type = typeSymbol?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) ?? string.Empty;
+            shortType = typeSymbol?.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat) ?? string.Empty;
+            isValueType = typeSymbol?.IsValueType ?? true;
+            isSpecialType = typeSymbol.IsSpecialType() ?? false;
+        }
         var defaultValue =
             attribute.GetNamedArgument(nameof(DependencyPropertyAttribute.DefaultValueExpression)).Value?.ToString() ??
             attribute.GetNamedArgument(nameof(DependencyPropertyAttribute.DefaultValue)).Value?.ToString();
