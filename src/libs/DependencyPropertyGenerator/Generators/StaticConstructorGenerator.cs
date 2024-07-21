@@ -112,7 +112,7 @@ public class StaticConstructorGenerator : IIncrementalGenerator
             if (!string.IsNullOrWhiteSpace(text))
             {
                 return new FileWithName(
-                    Name: $"{a.Key.FullName}.StaticConstructor.g.cs",
+                    Name: $"{a.Key.FullName}.StaticConstructor.g.cs".ToSafeFileName(),
                     Text: text);
             }
             else

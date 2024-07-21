@@ -76,7 +76,7 @@ public class AttachedDependencyPropertyGenerator : IIncrementalGenerator
     private static FileWithName GetSourceCode((ClassData Class, DependencyPropertyData DependencyProperty) data)
     {
         return new FileWithName(
-            Name: $"{data.Class.FullName}.AttachedProperties.{data.DependencyProperty.Name}.g.cs",
+            Name: $"{data.Class.FullName}.AttachedProperties.{data.DependencyProperty.Name}.g.cs".ToSafeFileName(),
             Text: Sources.GenerateAttachedDependencyProperty(data.Class, data.DependencyProperty));
     }
 

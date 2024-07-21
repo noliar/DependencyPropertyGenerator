@@ -67,7 +67,7 @@ public class AddOwnerGenerator : IIncrementalGenerator
     private static FileWithName GetSourceCode((ClassData Class, DependencyPropertyData DependencyProperty) data)
     {
         return new FileWithName(
-            Name: $"{data.Class.FullName}.AddOwner.{data.DependencyProperty.Name}.g.cs",
+            Name: $"{data.Class.FullName}.AddOwner.{data.DependencyProperty.Name}.g.cs".ToSafeFileName(),
             Text: Sources.GenerateDependencyProperty(data.Class, data.DependencyProperty));
     }
 

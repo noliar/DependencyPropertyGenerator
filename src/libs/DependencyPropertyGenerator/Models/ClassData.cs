@@ -9,6 +9,7 @@ public readonly record struct ClassData(
     string Type,
     string Modifiers,
     string Version,
+    string ConstructorName,
     bool IsStatic,
     Framework Framework,
     EquatableArray<string> Methods);

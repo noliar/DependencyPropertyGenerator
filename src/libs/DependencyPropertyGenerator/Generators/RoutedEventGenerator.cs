@@ -79,7 +79,7 @@ public class RoutedEventGenerator : IIncrementalGenerator
             : "Events";
 
         return new FileWithName(
-            Name: $"{data.Class.FullName}.{category}.{data.Event.Name}.g.cs",
+            Name: $"{data.Class.FullName}.{category}.{data.Event.Name}.g.cs".ToSafeFileName(),
             Text: Sources.GenerateRoutedEvent(data.Class, data.Event));
     }
 

@@ -231,6 +231,7 @@ public static class PrepareData
             Type: type,
             Modifiers: classModifiers,
             Version: version,
+            ConstructorName: classSymbol.ConstructedFrom.Name,
             IsStatic: isStaticClass,
             Framework: framework,
             Methods: methods.ToImmutableArray().AsEquatableArray());

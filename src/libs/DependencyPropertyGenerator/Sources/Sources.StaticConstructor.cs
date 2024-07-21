@@ -30,7 +30,7 @@ namespace {@class.Namespace}
 {{
     {GenerateModifiers(@class)}partial class {@class.Name}
     {{
-        static {@class.Name}()
+        static {@class.ConstructorName}()
         {{
 {generatedProperties}
 {generatedAttachedProperties}

@@ -79,7 +79,7 @@ public class OverrideMetadataGenerator : IIncrementalGenerator
                 data.OverrideMetada.AsImmutableArray());
 
         return new FileWithName(
-            Name: name,
+            Name: name.ToSafeFileName(),
             Text: text);
     }
 

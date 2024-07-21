@@ -308,4 +308,14 @@ internal static partial class Sources
 
         return GenerateType(@event);
     }
+
+    /// <summary>
+    /// Generic Type FullName contains <>, which is not allowed in filename
+    /// </summary>
+    /// <param name="typename">Type Display String</param>
+    /// <returns></returns>
+    internal static string ToSafeFileName(this string typename)
+    {
+        return System.IO.Path.GetInvalidFileNameChars().Aggregate(typename.Replace('<', '[').Replace('>', ']'), (current, c) => current.Replace(c, '_'));
+    }
 }
