@@ -48,7 +48,7 @@ namespace {@class.Namespace}
 {{
     {GenerateModifiers(@class)}partial class {@class.Name}
     {{
-        static {@class.Name}()
+        static {@class.ConstructorName}()
         {{
 {properties.Where(static property => property.IsReadOnly).Select(property => @$"
             {property.Name}Property.OverrideMetadata(
