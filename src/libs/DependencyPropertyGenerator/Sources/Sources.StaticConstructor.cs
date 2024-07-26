@@ -32,9 +32,12 @@ namespace {@class.Namespace}
     {{
         static {@class.ConstructorName}()
         {{
+            StartOfStaticConstructor();
 {generatedProperties}
 {generatedAttachedProperties}
+            EndOfStaticConstructor();
         }}
+{GeneratePartialMethod(@class)}
     }}
 }}".RemoveBlankLinesWhereOnlyWhitespaces();
         }
@@ -50,6 +53,7 @@ namespace {@class.Namespace}
     {{
         static {@class.Name}()
         {{
+            StartOfStaticConstructor();
 {properties.Where(static property => property.IsReadOnly).Select(property => @$"
             {property.Name}Property.OverrideMetadata(
                 forType: typeof({@class.Type}),
@@ -61,7 +65,10 @@ namespace {@class.Namespace}
                 forType: typeof({@class.Type}),
                 {GeneratePropertyMetadata(@class, property)});
 ").Inject()}
+            EndOfStaticConstructor();
         }}
+
+{GeneratePartialMethod(@class)}
 
 {properties.Select(GenerateOnChangedMethods).Inject()}
     }}
@@ -111,5 +118,14 @@ namespace {@class.Namespace}
                     ({GenerateType(property)})x.NewValue.GetValueOrDefault());" : "")}
             }}));
 ".RemoveBlankLinesWhereOnlyWhitespaces();
+    }
+
+    private static string GeneratePartialMethod(ClassData @class)
+    {
+        return $@" 
+{GenerateGeneratedCodeAttribute(@class.Version)}
+        static partial void StartOfStaticConstructor();
+{GenerateGeneratedCodeAttribute(@class.Version)}
+        static partial void EndOfStaticConstructor();";
     }
 }

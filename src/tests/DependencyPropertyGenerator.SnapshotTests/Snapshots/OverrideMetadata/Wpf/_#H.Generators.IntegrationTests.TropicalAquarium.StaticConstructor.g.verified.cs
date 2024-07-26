@@ -7,6 +7,7 @@ namespace H.Generators.IntegrationTests
     {
         static TropicalAquarium()
         {
+            StartOfStaticConstructor();
             AquariumGraphicProperty.OverrideMetadata(
                 forType: typeof(global::H.Generators.IntegrationTests.TropicalAquarium),
                 typeMetadata: new global::System.Windows.FrameworkPropertyMetadata(
@@ -18,7 +19,13 @@ namespace H.Generators.IntegrationTests
                     },
                     coerceValueCallback: null,
                     isAnimationProhibited: false));
+            EndOfStaticConstructor();
         }
+
+        [global::System.CodeDom.Compiler.GeneratedCode("DependencyPropertyGenerator", "0.0.0.0")]
+        static partial void StartOfStaticConstructor();
+        [global::System.CodeDom.Compiler.GeneratedCode("DependencyPropertyGenerator", "0.0.0.0")]
+        static partial void EndOfStaticConstructor();
 
         [global::System.CodeDom.Compiler.GeneratedCode("DependencyPropertyGenerator", "0.0.0.0")]
         partial void OnAquariumGraphicChanged();

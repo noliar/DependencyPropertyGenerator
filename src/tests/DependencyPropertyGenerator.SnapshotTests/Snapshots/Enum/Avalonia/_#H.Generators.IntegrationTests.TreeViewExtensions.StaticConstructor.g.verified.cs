@@ -7,6 +7,7 @@ namespace H.Generators.IntegrationTests
     {
         static TreeViewExtensions()
         {
+            StartOfStaticConstructor();
             ModeProperty.Changed.Subscribe(new global::Avalonia.Reactive.AnonymousObserver<global::Avalonia.AvaloniaPropertyChangedEventArgs<global::H.Generators.IntegrationTests.Mode>>(static x =>
             {
                 OnModeChanged(
@@ -14,6 +15,11 @@ namespace H.Generators.IntegrationTests
                     (global::H.Generators.IntegrationTests.Mode)x.OldValue.GetValueOrDefault(),
                     (global::H.Generators.IntegrationTests.Mode)x.NewValue.GetValueOrDefault());
             }));
+            EndOfStaticConstructor();
         }
+        [global::System.CodeDom.Compiler.GeneratedCode("DependencyPropertyGenerator", "0.0.0.0")]
+        static partial void StartOfStaticConstructor();
+        [global::System.CodeDom.Compiler.GeneratedCode("DependencyPropertyGenerator", "0.0.0.0")]
+        static partial void EndOfStaticConstructor();
     }
 }

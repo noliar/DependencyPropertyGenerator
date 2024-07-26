@@ -7,6 +7,7 @@ namespace H.Generators.IntegrationTests
     {
         static AnotherControl()
         {
+            StartOfStaticConstructor();
             MyProperty3Property.Changed.Subscribe(new global::Avalonia.Reactive.AnonymousObserver<global::Avalonia.AvaloniaPropertyChangedEventArgs<int>>(static x =>
             {
                 ((global::H.Generators.IntegrationTests.AnotherControl)x.Sender).OnMyProperty3Changed();
@@ -21,6 +22,11 @@ namespace H.Generators.IntegrationTests
             {
                 ((global::H.Generators.IntegrationTests.AnotherControl)x.Sender).OnMyProperty2Changed();
             }));
+            EndOfStaticConstructor();
         }
+        [global::System.CodeDom.Compiler.GeneratedCode("DependencyPropertyGenerator", "0.0.0.0")]
+        static partial void StartOfStaticConstructor();
+        [global::System.CodeDom.Compiler.GeneratedCode("DependencyPropertyGenerator", "0.0.0.0")]
+        static partial void EndOfStaticConstructor();
     }
 }
